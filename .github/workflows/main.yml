@@ -20,17 +20,17 @@ jobs:
       - name: Clone ModSecurity-nginx
         run: git clone --depth 1 https://github.com/SpiderLabs/ModSecurity-nginx.git
       - name: Clone OpenSSL
-        run: git clone git://git.openssl.org/openssl.git
+        run: git clone https://github.com/openssl/openssl.git
       - name: Clone PCRE2
         run: git clone https://github.com/PCRE2Project/pcre2.git
       - name: Clone yajl
         run: git clone https://github.com/ymmt2005/yail.git
       - name: Clone nginx-1.26
-        run: git clone --branch stable-1.26 git@github.com:nginx/nginx.git
+        run: wget http://nginx.org/download/nginx-1.26.2.tar.gz
       - name: Clone afl
-        run: git clone --depth 1 git@github.com:google/AFL.git
+        run: git clone https://github.com/google/AFL.git
       - name: Clone afl++
-        run: git clone --depth 1 git@github.com:AFLplusplus/AFLplusplus.git
+        run: git clone https://github.com/AFLplusplus/AFLplusplus.git
 
 
       - name: Build OpenSSL
