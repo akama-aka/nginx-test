@@ -24,7 +24,7 @@ jobs:
       - name: Clone PCRE2
         run: git clone https://github.com/PCRE2Project/pcre2.git
       - name: Clone yajl
-        run: git clone https://github.com/ymmt2005/yail.git
+        run: git clone https://github.com/lloyd/yajl.git
       - name: Clone nginx-1.26
         run: wget http://nginx.org/download/nginx-1.26.2.tar.gz
       - name: Clone afl
