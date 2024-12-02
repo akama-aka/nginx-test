@@ -1,0 +1,60 @@
+name: Build Nginx Server
+run-name: ${{ github.actor }}
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup dependencies
+        run: |
+          sudo apt update
+          sudo apt-get install -y build-essential libpcre3 libpcre3-dev zlib1g zlib1g-dev libssl-dev git perl curl ruby automake autoconf libtool autogen yajl-tools libcurlpp-dev liblua5.3 liblua5.3-dev libmaxminddb-dev 
+      - name: Clone headers-more-nginx-module
+        run: git clone https://github.com/openresty/headers-more-nginx-module.git
+      - name: Clone ModSecurity
+        run: git clone --depth 1 https://github.com/SpiderLabs/ModSecurity.git
+      - name: Clone ModSecurity-nginx
+        run: git clone --depth 1 https://github.com/SpiderLabs/ModSecurity-nginx.git
+      - name: Clone OpenSSL
+        run: git clone git://git.openssl.org/openssl.git
+      - name: Clone PCRE2
+        run: git clone https://github.com/PCRE2Project/pcre2.git
+      - name: Clone yajl
+        run: git clone https://github.com/ymmt2005/yail.git
+      - name: Clone nginx-1.26
+        run: git clone --branch stable-1.26 git@github.com:nginx/nginx.git
+      - name: Clone afl
+        run: git clone --depth 1 git@github.com:google/AFL.git
+      - name: Clone afl++
+        run: git clone --depth 1 git@github.com:AFLplusplus/AFLplusplus.git
+
+
+      - name: Build OpenSSL
+        run: |
+          cd openssl
+          ./config
+      - name: Build PCRE2
+        run: |
+          cd pcre2
+          ./configure
+          make
+          sudo make install
+      - name: Build yajl
+        run: |
+          cd yajl
+          ./configure
+          make
+          make test
+          make install
+      - name: Build ModSecurity
+        run: |
+          cd ModSecurity
+          git submodule init
+          git submodule update
+          ./configure
+          make
+          make install
