@@ -12,7 +12,7 @@ jobs:
       - name: Setup dependencies
         run: |
           sudo apt update
-          sudo apt-get install -y build-essential libpcre3 libpcre3-dev zlib1g zlib1g-dev libssl-dev git perl curl ruby automake autoconf libtool autogen yajl-tools libcurlpp-dev liblua5.3 liblua5.3-dev libmaxminddb-dev  wget libpcre2-dev libxml2-dev
+          sudo apt-get install -y build-essential libpcre3 libpcre3-dev zlib1g zlib1g-dev libssl-dev git perl curl ruby automake autoconf libtool autogen yajl-tools libcurlpp-dev liblua5.3 liblua5.3-dev libmaxminddb-dev  wget libpcre2-dev libxml2-dev libxslt1-dev
       - name: Clone headers-more-nginx-module
         run: git clone https://github.com/openresty/headers-more-nginx-module.git
       - name: Clone ModSecurity
