@@ -26,35 +26,20 @@ jobs:
       - name: Clone yajl
         run: git clone https://github.com/lloyd/yajl.git
       - name: Clone nginx-1.26
-        run: wget http://nginx.org/download/nginx-1.26.2.tar.gz
+        run: git clone https://github.com/nginx/nginx.git
       - name: Clone afl
         run: git clone https://github.com/google/AFL.git
       - name: Clone afl++
         run: git clone https://github.com/AFLplusplus/AFLplusplus.git
 
 
-      - name: Build OpenSSL
+      - name: AFL
         run: |
-          cd openssl
-          ./config
-      - name: Build PCRE2
-        run: |
-          cd pcre2
-          ./configure
+          cd AFL
           make
-          sudo make install
-      - name: Build yajl
-        run: |
-          cd yajl
-          ./configure
-          make
-          make test
           make install
-      - name: Build ModSecurity
+      - name: AFLPlusPlus
         run: |
-          cd ModSecurity
-          git submodule init
-          git submodule update
-          ./configure
-          make
+          cd ../AFLplusplus
+          CC=/usr/local/bin/afl-gcc make
           make install
