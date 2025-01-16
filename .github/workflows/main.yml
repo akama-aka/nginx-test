@@ -27,22 +27,22 @@ jobs:
         run: git clone https://github.com/lloyd/yajl.git
       - name: Clone nginx
         run: wget https://nginx.org/download/nginx-1.27.3.tar.gz
-      - name: Clone afl
-        run: git clone https://github.com/google/AFL.git
-      - name: Clone afl++
-        run: git clone https://github.com/AFLplusplus/AFLplusplus.git
+ #     - name: Clone afl
+ #       run: git clone https://github.com/google/AFL.git
+ #     - name: Clone afl++
+ #       run: git clone https://github.com/AFLplusplus/AFLplusplus.git
 
 
-      - name: Install AFL
-        run: |
-          cd AFL
-          make
-          sudo make install
-      - name: Install AFLPlusPlus
-        run: |
-          cd AFLplusplus
-          CC=/usr/local/bin/afl-gcc make
-          sudo make install
+#      - name: Install AFL
+#        run: |
+#          cd AFL
+#          make
+#          sudo make install
+#      - name: Install AFLPlusPlus
+#        run: |
+##          cd AFLplusplus
+#          CC=/usr/local/bin/afl-gcc make
+#          sudo make install
       - name: Install YAJL
         run: |
           cd yajl
@@ -62,7 +62,7 @@ jobs:
           sudo ./build.sh
           git submodule init
           git submodule update
-          sudo ./configure --enable-afl-fuzz --enable-yajl --enable-pcre2
+          sudo ./configure --enable-yajl --enable-pcre2
           sudo make
           sudo make install
       - name: Install NGINX
