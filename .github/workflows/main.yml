@@ -37,7 +37,7 @@ jobs:
         run: |
           cd AFL
           make
-          make install
+          make install -RunAsAdmin
       - name: AFLPlusPlus
         run: |
           cd ../AFLplusplus
