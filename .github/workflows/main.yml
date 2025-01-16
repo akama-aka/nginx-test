@@ -40,6 +40,6 @@ jobs:
           sudo make install
       - name: AFLPlusPlus
         run: |
-          cd ../AFLplusplus
+          cd AFLplusplus
           CC=/usr/local/bin/afl-gcc make
-          sudo make install -RunAsAdmin
+          sudo make install
