@@ -42,4 +42,4 @@ jobs:
         run: |
           cd ../AFLplusplus
           CC=/usr/local/bin/afl-gcc make
-          make install
+          make install -RunAsAdmin
