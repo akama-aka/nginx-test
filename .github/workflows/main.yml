@@ -15,16 +15,16 @@ jobs:
           sudo apt-get install -y build-essential libpcre3 libpcre3-dev zlib1g zlib1g-dev libssl-dev git perl curl ruby automake autoconf libtool autogen yajl-tools libcurlpp-dev liblua5.3 liblua5.3-dev libmaxminddb-dev 
 #      - name: Clone headers-more-nginx-module
 #        run: git clone https://github.com/openresty/headers-more-nginx-module.git
-#      - name: Clone ModSecurity
-#        run: git clone --depth 1 https://github.com/SpiderLabs/ModSecurity.git
+      - name: Clone ModSecurity
+        run: git clone --recursive --depth 1 https://github.com/SpiderLabs/ModSecurity.git
 #      - name: Clone ModSecurity-nginx
 #        run: git clone --depth 1 https://github.com/SpiderLabs/ModSecurity-nginx.git
 #      - name: Clone OpenSSL
 #        run: git clone https://github.com/openssl/openssl.git
-#      - name: Clone PCRE2
-#        run: git clone https://github.com/PCRE2Project/pcre2.git
-#      - name: Clone yajl
-#        run: git clone https://github.com/lloyd/yajl.git
+      - name: Clone PCRE2
+        run: git clone https://github.com/PCRE2Project/pcre2.git
+      - name: Clone yajl
+        run: git clone https://github.com/lloyd/yajl.git
 #      - name: Clone nginx-1.26
 #        run: git clone https://github.com/nginx/nginx.git
       - name: Clone afl
@@ -33,13 +33,34 @@ jobs:
         run: git clone https://github.com/AFLplusplus/AFLplusplus.git
 
 
-      - name: AFL
+      - name: Install AFL
         run: |
           cd AFL
           make
           sudo make install
-      - name: AFLPlusPlus
+      - name: Install AFLPlusPlus
         run: |
           cd AFLplusplus
           CC=/usr/local/bin/afl-gcc make
           sudo make install
+      - name: Install YAJL
+        run: |
+          cd yajl
+          ./configure
+          make
+          sudo make install
+      - name: Install PCRE2
+        run: |
+          cd pcre2
+          ./autogen.sh
+          ./configure
+          make
+          make install
+      - name: Install ModSecurity
+        run: |
+          cd modsecurity
+          sudo ./build.sh
+          git submodule init
+          git submodule update
+          sudo ./configure --enable-afl-fuzz --enable-yajl --enable-pcre2
+          
