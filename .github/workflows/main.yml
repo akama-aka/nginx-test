@@ -16,7 +16,7 @@ jobs:
 #      - name: Clone headers-more-nginx-module
 #        run: git clone https://github.com/openresty/headers-more-nginx-module.git
       - name: Clone ModSecurity
-        run: git clone --recursive --depth 1 https://github.com/SpiderLabs/ModSecurity.git
+        run: git clone --recursive https://github.com/owasp-modsecurity/ModSecurity.git
 #      - name: Clone ModSecurity-nginx
 #        run: git clone --depth 1 https://github.com/SpiderLabs/ModSecurity-nginx.git
 #      - name: Clone OpenSSL
